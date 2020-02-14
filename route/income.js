@@ -39,6 +39,22 @@ router.route("/:id")
                 res.json(err);
             })
     });
+router.route('/:days')
+    .get(auth.checkUser, function (req, res, next) {
+        Income.find({
+            users: req.user._id,
+            days: req.params.days
+        })
+            .then(function (result) {
+                console.log(result);
+                res.status(201);
+                res.json(result);
+            })
+            .catch(function (err) {
+                console.log(err);
+                res.json(err);
+            });
+    })
 
 router.route("/:id")
     .put(auth.checkUser, function (req, res) {

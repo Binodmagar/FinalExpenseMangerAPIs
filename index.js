@@ -31,8 +31,10 @@ app.use('/incomes', incomeRouter)
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.statusCode = 500;
-    res.json({ status: err.message });
-});
+    res.json({ status: err.message });});
+app.get("/",(req,res)=>{
+    res.send("Api is running");
+})
 
 app.listen(process.env.PORT, () => {
     console.log(`App is running at localhost:${process.env.PORT}`);
